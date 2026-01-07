@@ -8,6 +8,15 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.database import init_db
 from app.routers import feedback
 
+"""
+Main entry point for the FastAPI app.
+- Initialize database tables at application startup
+- Create and configure the FastAPI application instance
+- Register versioned API routers
+- Handle global validation and database errors in a consistent format
+- Expose health check endpoints for monitoring and availability checks
+"""
+
 # Initialize database tables
 init_db()
 

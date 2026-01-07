@@ -14,7 +14,15 @@ from app.utils.exceptions import (
 )
 from app.services.ai_service import GeminiAIService
 
-
+"""
+Abstraction layer between the API routes and the database & AI services.
+- Creating, retrieving, updating, and deleting feedback forms
+- Validating form existence before operations
+- Storing attendee feedback responses
+- Performing AI sentiment analysis using Gemini
+- DB Level Caching:
+    - Sentiment analysis results are cached in the SentimentAnalysis table.
+"""
 class FeedbackService:
     def __init__(self, db: Session):
         self.db = db

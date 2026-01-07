@@ -4,6 +4,14 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 from uuid import UUID
 
+"""
+Defined REST API endpoints 
+- Create, update, and delete feedback forms for events
+- Submit attendee feedback responses for a form
+- Perform AI-based sentiment analysis on collected feedback
+- Retrieve cached sentiment analysis results
+"""
+
 from app.database import get_db
 from app.schemas import (
     FeedbackFormCreate, FeedbackFormUpdate, FeedbackFormResponse,
