@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: feedback_db
+    environment:
+      POSTGRES_USER: feedback_user
+      POSTGRES_PASSWORD: feedback_pass
+      POSTGRES_DB: feedback_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U feedback_user -d feedback_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  api:
+    build: .
+    container_name: feedback_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    restart: always
+
+volumes:
+  postgres_data:

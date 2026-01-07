@@ -34,7 +34,17 @@ PROJECT_STRUCTURE = {
         "README.md": "# Feedback Analyzer\n",
     }
 }
+"""
+Creates folders and files on disk based on the dict structure
 
+Parameters:
+- base_path str - strarting directory 
+- structure dict - structure of folders and files
+    - keys - names of folder/file
+    - values
+        - dict - subfolders
+        - str - content to write in the file
+"""
 
 def create_structure(base_path, structure):
     for name, content in structure.items():
