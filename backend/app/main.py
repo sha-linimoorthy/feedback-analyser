@@ -17,9 +17,6 @@ Main entry point for the FastAPI app.
 - Expose health check endpoints for monitoring and availability checks
 """
 
-# Initialize database tables
-init_db()
-
 app = FastAPI(
     title="AI Attendee Feedback Analyzer",
     description="REST API for collecting and analyzing event feedback using Gemini AI"
@@ -27,6 +24,11 @@ app = FastAPI(
 
 # Include routers
 app.include_router(feedback.router)
+
+# Initialize database tables
+@app.on_event("startup")
+def on_startup():
+    init_db()
 
 # Global exception handlers
 @app.exception_handler(RequestValidationError)
